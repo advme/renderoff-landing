@@ -52,6 +52,8 @@ jobs:
             --exclude 'templates' \
             --exclude 'content' \
             --exclude '.deployignore' \
+            --exclude '.gitignore' \
+            --exclude 'README.md' \
             --exclude '__pycache__' \
             ./ _site/
           echo "Published files:"
