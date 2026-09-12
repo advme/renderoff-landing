@@ -1,0 +1,134 @@
+{
+  "_readme": [
+    "Content for the generated app pages. Rebuild with: python3 tools/build.py",
+    "",
+    "Anything wrapped in [[double brackets]] renders with a yellow highlight on the",
+    "page, the same marker the Terms page uses. Use it for values you still need to",
+    "confirm. Remove the brackets once the value is real.",
+    "",
+    "Set \"draft\": true to show the 'not ready yet' banner, with \"draft_note\"",
+    "saying what is outstanding. Set it to false once everything is in.",
+    "",
+    "Screenshots: \"display\": \"compact\" frames a small window at its natural size",
+    "on a backdrop rather than upscaling it to the full column width. Put real",
+    "files in assets/img/shots/ at 2x and set \"src\"."
+  ],
+
+  "apps": [
+    {
+      "id": "orange-timer",
+      "draft": true,
+      "draft_note": "The copy is written from the app itself, but the two screenshots are still placeholders — save them at the paths shown below and set <code>src</code> in <code>content/apps.json</code>.",
+
+      "name": "Orange Timer",
+      "tagline": "Coolest timer for your {apple} Mac",
+      "icon": "assets/img/orange-timer.png",
+      "status": "available",
+
+      "seo": {
+        "title": "Orange Timer — a pinnable timer and stopwatch for Mac",
+        "description": "A timer and a stopwatch in one small window that pins above everything else on your Mac. Drag the scale to set it. One-time purchase, no subscription."
+      },
+
+      "summary": "A timer and a stopwatch in one small window that stays on top of whatever you are doing. Drag along the scale to set it, pin it over any app, and get on with the thing you are timing.",
+
+      "actions": {
+        "buy_label": "Buy — [[€9]]",
+        "buy_url": "[[#]]",
+        "trial_label": "Download free trial",
+        "trial_url": "[[#]]",
+        "trial_note": "[[14-day]] free trial. No account needed."
+      },
+
+      "requirements": [
+        ["Requires", "[[macOS 14 Sonoma or later]]"],
+        ["Runs on", "[[Apple silicon and Intel]]"],
+        ["Download", "[[about 8 MB]]"],
+        ["Languages", "[[English]]"]
+      ],
+
+      "screenshots": [
+        {
+          "src": null,
+          "expected_path": "assets/img/shots/orange-timer-timer.png",
+          "display": "compact",
+          "display_width": 452,
+          "width": 904,
+          "height": 522,
+          "alt": "Orange Timer in timer mode, with the minute scale set to ten minutes",
+          "caption": "Drag along the scale to set the time. The exact figure is right there too, so you are never guessing."
+        },
+        {
+          "src": null,
+          "expected_path": "assets/img/shots/orange-timer-stopwatch.png",
+          "display": "compact",
+          "display_width": 452,
+          "width": 904,
+          "height": 522,
+          "alt": "Orange Timer in stopwatch mode, showing hundredths of a second",
+          "caption": "The same window switches to a stopwatch, accurate to hundredths."
+        }
+      ],
+
+      "features": [
+        {
+          "title": "Timer and stopwatch in one",
+          "text": "Two tools most people keep in two places, in a single window. Switch between them at the top — no second app, no mode you have to hunt for."
+        },
+        {
+          "title": "Drag to set it",
+          "text": "Pull along the minute scale and let go. No number pads, no unit pickers, no dialog to confirm. The scale and the exact time are both on screen, so you get the feel of the duration and the precise figure at once."
+        },
+        {
+          "title": "Pins above everything",
+          "text": "Pin the window and it stays over whatever you are working in — full-screen apps, presentations, a recipe, a workout. You never lose it behind another window or hunt for it in the Dock."
+        },
+        {
+          "title": "Small on purpose",
+          "text": "It takes a corner of the screen and asks nothing of you. Not a window you manage, arrange, or think about."
+        }
+      ],
+
+      "pricing": {
+        "price": "[[€9]]",
+        "unit": "one-time",
+        "includes": [
+          "Every update within the current major version",
+          "Use on every Mac you own",
+          "[[14-day]] free trial before you pay",
+          "[[30-day]] refund if it is not for you"
+        ],
+        "note": "No subscription. Major new versions will be a paid upgrade at a discount for existing customers — said up front so it is never a surprise."
+      },
+
+      "faq": [
+        {
+          "q": "Is there a subscription?",
+          "a": "No. You pay once and the app is yours. Major new versions are a paid upgrade, discounted for existing customers, and everything smaller is free."
+        },
+        {
+          "q": "Does it stay on top of full-screen apps?",
+          "a": "Yes — that is the point of the pin. Pin the window and it stays visible over whatever else is on screen."
+        },
+        {
+          "q": "How many Macs does one licence cover?",
+          "a": "Every Mac you personally own. If you are buying for a team, write to us and we will sort out a volume licence."
+        },
+        {
+          "q": "Can I try it first?",
+          "a": "Yes — the trial is [[14 days]] with every feature unlocked, and it does not ask for a card or an account."
+        },
+        {
+          "q": "What if I don't like it?",
+          "a": "Write within [[30 days]] of buying directly and we will refund you. If you bought through the Mac App Store, refunds go through Apple."
+        },
+        {
+          "q": "Does it send any data anywhere?",
+          "a": "[[No. There is no account, no sync and no analytics.]]"
+        }
+      ],
+
+      "support_email": "[[support@renderoff.com]]"
+    }
+  ]
+}

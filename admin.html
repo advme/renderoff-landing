@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RENDEROFF admin</title>
+<!-- Local tool. Never deploy this file or tools/ to the public site. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/img/renderoff-logo.png">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body class="admin-body">
+
+<header class="admin-topbar">
+  <div class="admin-shell admin-topbar__inner">
+    <div class="admin-topbar__brand">
+      <img src="assets/img/renderoff-logo.png" alt="" width="28" height="28">
+      <div class="admin-tabs" role="tablist">
+        <button class="admin-tab is-active" type="button" role="tab" data-panel="changelog" aria-selected="true">Changelog</button>
+        <button class="admin-tab" type="button" role="tab" data-panel="blog" aria-selected="false">Blog</button>
+      </div>
+    </div>
+    <div class="admin-topbar__actions">
+      <span class="admin-dirty" id="dirty-flag" hidden>Unsaved changes</span>
+      <a class="admin-btn admin-btn--ghost" id="view-link" href="changelog.html" target="_blank" rel="noopener">View page</a>
+      <button class="admin-btn admin-btn--ghost" type="button" id="download-btn">Download JSON</button>
+      <button class="admin-btn admin-btn--primary" type="button" id="save-btn">Save</button>
+    </div>
+  </div>
+</header>
+
+<p class="admin-status" id="status" role="status" hidden></p>
+
+<main class="admin-shell admin-main">
+
+<div id="panel-changelog" class="admin-panel">
+
+  <section class="admin-card">
+    <h1 class="admin-card__title" id="form-title">Add an update</h1>
+
+    <form id="entry-form" autocomplete="off">
+      <div class="admin-grid">
+        <label class="admin-field">
+          <span class="admin-label">App</span>
+          <select id="f-app" required></select>
+        </label>
+
+        <label class="admin-field">
+          <span class="admin-label">Version</span>
+          <input id="f-version" type="text" placeholder="1.2.0" spellcheck="false">
+        </label>
+
+        <label class="admin-field">
+          <span class="admin-label">Date</span>
+          <input id="f-date" type="date" required>
+        </label>
+      </div>
+
+      <label class="admin-field">
+        <span class="admin-label">Headline <span class="admin-optional">optional</span></span>
+        <input id="f-title" type="text" placeholder="Menu bar countdown">
+      </label>
+
+      <label class="admin-field">
+        <span class="admin-label">Update log</span>
+        <textarea id="f-notes" rows="8" placeholder="New: The running timer now shows in the menu bar.&#10;Improved: The dial redraws less often in the background.&#10;Fixed: Timer drifted after the Mac woke from sleep."></textarea>
+      </label>
+      <p class="admin-help">
+        One item per line. Start a line with <code>New:</code>, <code>Improved:</code>
+        or <code>Fixed:</code> to give it a coloured badge. Lines without a prefix
+        render as plain notes.
+      </p>
+
+      <div class="admin-form-actions">
+        <button class="admin-btn admin-btn--primary" type="submit" id="submit-btn">Add update</button>
+        <button class="admin-btn admin-btn--ghost" type="button" id="cancel-btn" hidden>Cancel edit</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="admin-card">
+    <div class="admin-card__head">
+      <h2 class="admin-card__title">Published updates</h2>
+      <span class="admin-count" id="entry-count"></span>
+    </div>
+    <div id="entry-list"></div>
+  </section>
+
+  <section class="admin-card">
+    <div class="admin-card__head">
+      <h2 class="admin-card__title">Apps</h2>
+    </div>
+    <p class="admin-help admin-help--top">
+      Add an app here before you can post updates for it. The icon path is
+      relative to the site root, e.g. <code>assets/img/orange-timer.png</code>.
+    </p>
+    <div id="app-list"></div>
+
+    <form id="app-form" class="admin-app-form" autocomplete="off">
+      <input id="a-name" type="text" placeholder="App name" required>
+      <input id="a-icon" type="text" placeholder="assets/img/your-app.png" spellcheck="false">
+      <button class="admin-btn admin-btn--ghost" type="submit">Add app</button>
+    </form>
+  </section>
+
+</div>
+
+<div id="panel-blog" class="admin-panel" hidden>
+
+  <section class="admin-card">
+    <h1 class="admin-card__title" id="post-form-title">Write a post</h1>
+
+    <form id="post-form" autocomplete="off">
+      <div class="admin-grid admin-grid--post">
+        <label class="admin-field">
+          <span class="admin-label">Title</span>
+          <input id="p-title" type="text" placeholder="Why I build my own apps" required>
+        </label>
+
+        <label class="admin-field">
+          <span class="admin-label">Date</span>
+          <input id="p-date" type="date" required>
+        </label>
+      </div>
+
+      <label class="admin-field">
+        <span class="admin-label">URL slug</span>
+        <input id="p-slug" type="text" placeholder="why-i-build-my-own-apps" spellcheck="false" required>
+      </label>
+      <p class="admin-help">The address will be <code id="slug-preview">blog/….html</code></p>
+
+      <label class="admin-field">
+        <span class="admin-label">Summary <span class="admin-optional">optional — taken from the first paragraph if blank</span></span>
+        <input id="p-summary" type="text" placeholder="One line for the index page and search results">
+      </label>
+
+      <label class="admin-field">
+        <span class="admin-label">Cover image <span class="admin-optional">optional</span></span>
+        <div class="admin-inline">
+          <input id="p-cover" type="text" placeholder="assets/img/blog/cover.png" spellcheck="false">
+          <button class="admin-btn admin-btn--ghost" type="button" id="cover-upload-btn">Upload…</button>
+        </div>
+      </label>
+
+      <div class="admin-field">
+        <span class="admin-label">Body</span>
+
+        <div class="editor-toolbar" role="toolbar" aria-label="Formatting">
+          <button type="button" data-md="h2" title="Heading">H2</button>
+          <button type="button" data-md="h3" title="Subheading">H3</button>
+          <span class="editor-toolbar__sep"></span>
+          <button type="button" data-md="bold" title="Bold (⌘B)"><strong>B</strong></button>
+          <button type="button" data-md="italic" title="Italic (⌘I)"><em>I</em></button>
+          <button type="button" data-md="code" title="Inline code">&lt;/&gt;</button>
+          <span class="editor-toolbar__sep"></span>
+          <button type="button" data-md="link" title="Link (⌘K)">Link</button>
+          <button type="button" data-md="ul" title="Bulleted list">&bull; List</button>
+          <button type="button" data-md="ol" title="Numbered list">1. List</button>
+          <button type="button" data-md="quote" title="Quote">&ldquo;&rdquo;</button>
+          <button type="button" data-md="pre" title="Code block">Code</button>
+          <button type="button" data-md="hr" title="Divider">&mdash;</button>
+          <span class="editor-toolbar__sep"></span>
+          <button type="button" id="img-upload-btn" title="Upload and insert an image">Image…</button>
+          <span class="editor-toolbar__spacer"></span>
+          <button type="button" id="preview-toggle" class="is-active" aria-pressed="true">Preview</button>
+        </div>
+
+        <div class="editor editor--split" id="editor">
+          <textarea id="p-body" rows="20" spellcheck="true"
+            placeholder="Write in Markdown.&#10;&#10;## A heading&#10;&#10;Some **bold** text and a [link](https://example.com).&#10;&#10;- a list item&#10;&#10;Drag an image straight into this box to upload it."></textarea>
+          <div class="editor__preview post__body" id="preview" aria-live="polite"></div>
+        </div>
+        <p class="admin-help" id="editor-stats"></p>
+      </div>
+
+      <div class="admin-form-actions">
+        <button class="admin-btn admin-btn--primary" type="submit" id="post-submit-btn">Add post</button>
+        <button class="admin-btn admin-btn--ghost" type="button" id="post-cancel-btn" hidden>Cancel edit</button>
+        <label class="admin-check">
+          <input type="checkbox" id="p-draft">
+          <span>Keep as draft (not published to the site)</span>
+        </label>
+      </div>
+    </form>
+  </section>
+
+  <section class="admin-card">
+    <div class="admin-card__head">
+      <h2 class="admin-card__title">Posts</h2>
+      <span class="admin-count" id="post-count"></span>
+    </div>
+    <div id="post-list"></div>
+  </section>
+
+</div>
+
+<input type="file" id="file-input" accept="image/png,image/jpeg,image/gif,image/webp,image/svg+xml" hidden>
+
+</main>
+
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<!--
+  GENERATED FILE — do not edit directly.
+  Source: content/apps.json + templates/base.html
+  Rebuild with: python3 tools/build.py
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<meta property="og:title" content="{{og_title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:type" content="website">
+<link rel="icon" href="{{base}}assets/img/renderoff-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="{{base}}styles.css">
+{{structured_data}}
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+{{sprite}}
+</svg>
+
+<header class="site-header">
+  <div class="shell shell--header">
+    <a class="brand" href="{{base}}index.html" aria-label="RENDEROFF home">
+      <img src="{{base}}assets/img/renderoff-logo.png" alt="RENDEROFF" width="46" height="46">
+    </a>
+    <!-- TODO: real destinations. The Figma has no link targets for these. -->
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link" href="mailto:hello@renderoff.com">write me</a>
+      <a class="nav__link" href="{{base}}index.html#about">about</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+{{body}}
+</main>
+
+<footer class="site-footer">
+  <div class="shell shell--footer">
+    <div class="site-footer__brand">
+      <img class="site-footer__mark" src="{{base}}assets/icons/renderoff-mark.svg" alt="" width="29" height="32">
+      <div class="site-footer__meta">
+        <nav class="site-footer__links" aria-label="Footer">
+          <a href="{{base}}blog.html">blog</a>
+          <a href="{{base}}changelog.html">changelog</a>
+          <a href="{{base}}terms.html">t&amp;c</a>
+        </nav>
+        <p class="site-footer__copy">&copy; 2026 RENDEROFF</p>
+      </div>
+    </div>
+    <p class="site-footer__note">made with a lot of tea in Tallinn</p>
+  </div>
+</footer>
+
+</body>
+</html>

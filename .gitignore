@@ -1,0 +1,8 @@
+# Local changelog backups written by tools/admin-server.py
+.changelog-backups/
+
+# Atomic-write temp files (should never persist, but just in case)
+.changelog-*.tmp
+
+.DS_Store
+__pycache__/

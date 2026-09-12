@@ -1,0 +1,82 @@
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate the static pages
+        run: python3 tools/build.py
+
+      - name: Fail if the committed pages are stale
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::Generated pages differ from the committed ones."
+            echo "Run 'python3 tools/build.py' locally and commit the result."
+            git diff --stat
+            exit 1
+          fi
+
+      - name: Stage the public site
+        # The authoring tools must never be served. tools/admin-server.py has no
+        # authentication because it is only ever meant to listen on localhost.
+        run: |
+          mkdir -p _site
+          rsync -a \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude '.claude' \
+            --exclude '.changelog-backups' \
+            --exclude '_site' \
+            --exclude 'admin.html' \
+            --exclude 'assets/js/admin.js' \
+            --exclude 'assets/css/admin.css' \
+            --exclude 'assets/img/source' \
+            --exclude 'tools' \
+            --exclude 'templates' \
+            --exclude 'content' \
+            --exclude '.deployignore' \
+            --exclude '__pycache__' \
+            ./ _site/
+          echo "Published files:"
+          find _site -type f | sort
+
+      - name: Check the tools really are gone
+        run: |
+          for f in admin.html assets/js/admin.js assets/css/admin.css tools; do
+            if [ -e "_site/$f" ]; then
+              echo "::error::$f would have been published"; exit 1
+            fi
+          done
+          echo "No authoring tools in the published output."
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,92 @@
+{
+  "apps": [
+    {
+      "id": "orange-timer",
+      "name": "Orange Timer",
+      "icon": "assets/img/orange-timer.png"
+    },
+    {
+      "id": "locky-mocky",
+      "name": "Locky Mocky",
+      "icon": "assets/img/locky-mocky.png"
+    }
+  ],
+  "entries": [
+    {
+      "id": "ot-1-2-0",
+      "app": "orange-timer",
+      "version": "1.2.0",
+      "date": "2026-08-18",
+      "title": "Menu bar countdown",
+      "notes": [
+        {
+          "tag": "new",
+          "text": "The running timer now shows in the menu bar, so you can keep an eye on it without bringing the window forward."
+        },
+        {
+          "tag": "new",
+          "text": "Added a compact mode that shrinks the window to just the dial."
+        },
+        {
+          "tag": "improved",
+          "text": "The dial redraws far less often when the window is in the background, which is easier on battery."
+        },
+        {
+          "tag": "fixed",
+          "text": "Fixed the timer drifting by a second or two after the Mac woke from sleep."
+        }
+      ]
+    },
+    {
+      "id": "lm-1-1-0",
+      "app": "locky-mocky",
+      "version": "1.1.0",
+      "date": "2026-08-05",
+      "title": "Per-app grace periods",
+      "notes": [
+        {
+          "tag": "new",
+          "text": "You can now set a grace period per app, so a quick switch away and back does not ask for your fingerprint again."
+        },
+        {
+          "tag": "improved",
+          "text": "The unlock prompt appears noticeably faster on Apple silicon."
+        },
+        {
+          "tag": "fixed",
+          "text": "Fixed protection not re-arming after a locked app was force quit."
+        }
+      ]
+    },
+    {
+      "id": "ot-1-1-1",
+      "app": "orange-timer",
+      "version": "1.1.1",
+      "date": "2026-07-22",
+      "title": "",
+      "notes": [
+        {
+          "tag": "fixed",
+          "text": "Fixed a crash when starting a timer while another one was already finishing."
+        },
+        {
+          "tag": "fixed",
+          "text": "The window no longer forgets its position on a second display."
+        }
+      ]
+    },
+    {
+      "id": "lm-1-0-0",
+      "app": "locky-mocky",
+      "version": "1.0.0",
+      "date": "2026-06-30",
+      "title": "First release",
+      "notes": [
+        {
+          "tag": null,
+          "text": "Locky Mocky is out. Protect any Mac app behind Touch ID, with a passcode fallback and nothing leaving your machine."
+        }
+      ]
+    }
+  ]
+}

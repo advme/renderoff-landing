@@ -1,0 +1,1576 @@
+/* ==========================================================================
+   RENDEROFF — landing page
+   Values mirror the Figma source (file sqMMWGElCV6USYtTiWaeWG, node 6:711).
+   Desktop reference: 1512px canvas, 712px centered content column.
+   ========================================================================== */
+
+:root {
+  /* Layout */
+  --shell-width: 712px;
+  --shell-gutter: 24px;
+
+  /* Type — Figma uses SF Pro for copy and SF Compact Display for app names and
+     button labels. macOS picks Text vs Display optically, so the variants are
+     named explicitly here to reproduce Figma's line breaks exactly. */
+  --font-text: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter",
+    "Helvetica Neue", Arial, sans-serif;
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter",
+    "Helvetica Neue", Arial, sans-serif;
+  --font-compact: "SF Compact Display", "SF Pro Display", -apple-system,
+    BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  /* Color */
+  --ink: #000000;
+  --ink-muted: #737373;
+  --ink-footer: #525252;
+  --page: #ffffff;
+
+  --footer-bg: #f5f5f5;
+  --footer-rule: #dfdfdf;
+
+  --btn-blue: #0271e3;
+  --btn-blue-edge-top: #3d94ec;
+  --btn-blue-edge-bottom: #013e7d;
+
+  --btn-grey: #666666;
+  --btn-grey-edge-top: #a6a6a6;
+  --btn-grey-edge-bottom: #2f2f2f;
+}
+
+/* --------------------------------------------------------------------------
+   Reset
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 17px;
+  line-height: 20px;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Footer sits at the bottom even on short pages. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+p,
+figure {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Shared centered column. */
+.shell {
+  width: 100%;
+  max-width: calc(var(--shell-width) + 2 * var(--shell-gutter));
+  margin-inline: auto;
+  padding-inline: var(--shell-gutter);
+}
+
+/* --------------------------------------------------------------------------
+   Header — Figma: 712 x 70, 12px vertical padding, 46px mark
+   -------------------------------------------------------------------------- */
+
+.shell--header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 12px;
+}
+
+.brand img {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 24px;
+  color: var(--ink-muted);
+  font-size: 17px;
+  line-height: 20px;
+  white-space: nowrap;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   Intro — Figma: starts 187px from top, 12px gap between title and body
+   -------------------------------------------------------------------------- */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 117px; /* 187 - 70 header */
+}
+
+.intro__title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 38px;
+  font-weight: 400;
+  /* Figma wraps greedily; `pretty`/`balance` would re-flow the line breaks. */
+  text-wrap: wrap;
+}
+
+.intro__body {
+  font-size: 17px;
+  line-height: 20px;
+}
+
+/* The Figma text carries an empty line between the two paragraphs. */
+.intro__body p + p {
+  margin-top: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   App list — Figma: rows at 475 / 564 / 653 / 742 (64px tall, 25px apart)
+   -------------------------------------------------------------------------- */
+
+.apps {
+  padding-top: 42px; /* 475 - 433 */
+  padding-bottom: 106px; /* 912 - 806 */
+}
+
+.apps__list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.app__main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.app__icon {
+  width: 64px;
+  height: 64px;
+  flex: none;
+  border-radius: 14px;
+}
+
+.app__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.app__name {
+  font-family: var(--font-compact);
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 600;
+}
+
+.app__tagline {
+  font-size: 17px;
+  line-height: 20px;
+}
+
+/* Apple mark sits inline with the tagline text. */
+.apple {
+  display: inline-block;
+  width: 0.815em; /* glyph aspect ratio from the Figma export */
+  height: 1em;
+  vertical-align: -0.13em;
+  fill: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons — flat fill with a vertical gradient hairline edge (macOS bevel)
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  padding: 5px 12px; /* 5 + 20 line-box + 5 + 2 border = 32px, as in Figma */
+  border: 1px solid transparent;
+  border-radius: 36px;
+  color: #ffffff;
+  font-family: var(--font-compact);
+  font-size: 17px;
+  line-height: 20px;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  transition: filter 0.15s ease, transform 0.06s ease;
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  filter: brightness(0.94);
+}
+
+.btn__icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  fill: currentColor;
+}
+
+.btn--download {
+  background:
+    linear-gradient(var(--btn-blue), var(--btn-blue)) padding-box,
+    linear-gradient(180deg, var(--btn-blue-edge-top), var(--btn-blue-edge-bottom)) border-box;
+}
+
+.btn--notify {
+  background:
+    linear-gradient(var(--btn-grey), var(--btn-grey)) padding-box,
+    linear-gradient(180deg, var(--btn-grey-edge-top), var(--btn-grey-edge-bottom)) border-box;
+}
+
+/* --------------------------------------------------------------------------
+   Footer — Figma: 81px tall, #f5f5f5 with a 1px top rule, 24px inset
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  flex: none;
+  background: var(--footer-bg);
+  border-top: 1px solid var(--footer-rule);
+}
+
+.shell--footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 23px 24px; /* 1px top border included → 81px total */
+}
+
+.site-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* mark is 29px wide, meta starts at x=49 */
+}
+
+.site-footer__mark {
+  width: 28.86px;
+  height: 32px;
+  flex: none;
+}
+
+.site-footer__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* 19px offset - 14px line box */
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--ink-footer);
+}
+
+.site-footer__links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.site-footer__links a {
+  transition: color 0.15s ease;
+}
+
+.site-footer__links a:hover,
+.site-footer__links a:focus-visible {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.site-footer__note {
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--ink-footer);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Focus
+   -------------------------------------------------------------------------- */
+
+a:focus-visible {
+  outline: 2px solid var(--btn-blue);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   Narrow screens — the Figma canvas is desktop-only, so scale it down
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .intro {
+    padding-top: 64px;
+  }
+
+  .intro__title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .apps {
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 560px) {
+  .intro {
+    padding-top: 48px;
+  }
+
+  .intro__title {
+    font-size: 25px;
+    line-height: 31px;
+  }
+
+  .app {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .app__icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .app__name {
+    font-size: 21px;
+    line-height: 26px;
+  }
+
+  .app__tagline {
+    font-size: 16px;
+  }
+
+  .apps__list {
+    gap: 32px;
+  }
+
+  .shell--footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Legal pages (terms.html)
+
+   Reuses the 712px column, header and footer from the landing page. Body copy
+   is set at 17px/26px rather than the landing page's 17px/20px — the tighter
+   leading is right for a few short paragraphs and punishing for a long
+   document.
+   -------------------------------------------------------------------------- */
+
+.legal {
+  padding-top: 72px;
+  padding-bottom: 96px;
+  font-size: 17px;
+  line-height: 26px;
+}
+
+.legal__eyebrow {
+  margin-bottom: 28px;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--ink-muted);
+}
+
+.legal__eyebrow a:hover {
+  color: var(--ink);
+}
+
+.legal__title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 38px;
+  font-weight: 400;
+}
+
+.legal__meta {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--ink-muted);
+}
+
+/* Remove this block together with the notice in terms.html before publishing. */
+.legal__notice {
+  margin-top: 28px;
+  padding: 16px 18px;
+  border: 1px solid #f0d9a8;
+  border-radius: 12px;
+  background: #fdf6e6;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.legal__lede {
+  margin-top: 28px;
+  font-size: 19px;
+  line-height: 29px;
+}
+
+/* Table of contents ------------------------------------------------------- */
+
+.legal__toc {
+  margin-top: 40px;
+  padding: 24px 28px;
+  border: 1px solid var(--footer-rule);
+  border-radius: 14px;
+  background: var(--footer-bg);
+}
+
+.legal__toc-title {
+  font-family: var(--font-compact);
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.legal__toc ol {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  columns: 2;
+  column-gap: 40px;
+  counter-reset: toc;
+}
+
+.legal__toc li {
+  break-inside: avoid;
+  counter-increment: toc;
+  font-size: 15px;
+  line-height: 26px;
+}
+
+.legal__toc li::before {
+  content: counter(toc) ".";
+  display: inline-block;
+  min-width: 22px;
+  color: var(--ink-muted);
+}
+
+.legal__toc a {
+  color: var(--ink);
+  text-decoration-line: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.2);
+  text-underline-offset: 2px;
+}
+
+.legal__toc a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Sections ---------------------------------------------------------------- */
+
+.legal section {
+  margin-top: 44px;
+  scroll-margin-top: 24px;
+}
+
+.legal h2 {
+  font-family: var(--font-compact);
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.legal p + p,
+.legal ul + p,
+.legal dl + p {
+  margin-top: 14px;
+}
+
+.legal ul {
+  margin-top: 14px;
+  padding-left: 22px;
+  list-style: disc;
+}
+
+.legal li + li {
+  margin-top: 8px;
+}
+
+.legal a {
+  text-decoration-line: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.3);
+  text-underline-offset: 2px;
+}
+
+.legal a:hover {
+  text-decoration-color: currentColor;
+}
+
+.legal strong {
+  font-weight: 600;
+}
+
+/* Definition list --------------------------------------------------------- */
+
+.legal__defs {
+  margin: 18px 0 0;
+}
+
+.legal__defs dt {
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+.legal__defs dd {
+  margin: 4px 0 0;
+}
+
+.legal__contact {
+  margin-top: 14px;
+}
+
+/* Placeholder marker — every .ph needs a real value before publishing. */
+.ph {
+  padding: 1px 3px;
+  border-radius: 4px;
+  background: #fff3c4;
+  box-shadow: inset 0 0 0 1px #f0dd9a;
+  /* Must be explicit: without it the marker inherits its colour from the
+     context, which made white-on-yellow inside buttons. */
+  color: #6b4e00;
+}
+
+.ph a {
+  color: inherit;
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 760px) {
+  .legal {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+
+  .legal__toc ol {
+    columns: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .legal__title {
+    font-size: 27px;
+    line-height: 33px;
+  }
+
+  .legal__lede {
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  .legal h2 {
+    font-size: 21px;
+    line-height: 26px;
+  }
+
+  .legal__toc {
+    padding: 20px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Changelog (changelog.html)
+
+   Reuses the 712px column and the legal page's long-form leading. Entries are
+   rendered from changelog.json by assets/js/changelog.js.
+   -------------------------------------------------------------------------- */
+
+.changelog {
+  padding-top: 72px;
+  padding-bottom: 96px;
+  font-size: 17px;
+  line-height: 26px;
+}
+
+.changelog__lede {
+  margin-top: 10px;
+  font-size: 17px;
+  line-height: 26px;
+  color: var(--ink-muted);
+}
+
+.changelog__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--footer-rule);
+}
+
+.filter {
+  padding: 6px 14px;
+  border: 1px solid var(--footer-rule);
+  border-radius: 24px;
+  background: transparent;
+  color: var(--ink-muted);
+  font: inherit;
+  font-size: 15px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.filter:hover {
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.filter[aria-pressed="true"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.changelog__status {
+  margin-top: 24px;
+  padding: 14px 16px;
+  border: 1px solid var(--footer-rule);
+  border-radius: 12px;
+  background: var(--footer-bg);
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.changelog__status.is-error {
+  border-color: #f0c9c9;
+  background: #fdf1f1;
+}
+
+.changelog__empty {
+  margin-top: 32px;
+  color: var(--ink-muted);
+}
+
+/* One release ------------------------------------------------------------- */
+
+.entry {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--footer-rule);
+  scroll-margin-top: 24px;
+}
+
+.entry:last-child {
+  border-bottom: 0;
+}
+
+.entry__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.entry__icon {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 9px;
+}
+
+.entry__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.entry__name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.entry__app {
+  font-family: var(--font-compact);
+  font-size: 21px;
+  line-height: 26px;
+  font-weight: 600;
+}
+
+.entry__version {
+  padding: 1px 8px;
+  border: 1px solid var(--footer-rule);
+  border-radius: 20px;
+  background: var(--footer-bg);
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--ink-footer);
+  font-variant-numeric: tabular-nums;
+}
+
+.entry__date {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink-muted);
+}
+
+.entry__title {
+  margin-top: 18px;
+  font-family: var(--font-compact);
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.entry__notes {
+  margin-top: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.entry__notes li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.entry__notes li + li {
+  margin-top: 10px;
+}
+
+.entry__notes li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 11px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c6c6c6;
+}
+
+/* Badges ------------------------------------------------------------------ */
+
+.tag {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 0 7px;
+  border-radius: 5px;
+  font-family: var(--font-compact);
+  font-size: 12px;
+  line-height: 19px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+  white-space: nowrap;
+}
+
+.tag--new {
+  background: #e3f0ff;
+  color: #0a4d9e;
+}
+
+.tag--improved {
+  background: #e8f2e4;
+  color: #2f6524;
+}
+
+.tag--fixed {
+  background: #fdeee0;
+  color: #8a4a12;
+}
+
+@media (max-width: 760px) {
+  .changelog {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 560px) {
+  .entry {
+    padding: 26px 0;
+  }
+
+  .entry__app {
+    font-size: 19px;
+    line-height: 24px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   App pages (orange-timer.html etc. — generated by tools/build.py)
+
+   Same 712px column as the rest of the site. Screenshots stay inside it rather
+   than breaking wider, so the pages read as part of the same design.
+   -------------------------------------------------------------------------- */
+
+.app-page {
+  padding-top: 72px;
+  padding-bottom: 96px;
+  font-size: 17px;
+  line-height: 26px;
+}
+
+.app-page .legal__notice {
+  margin-top: 0;
+  margin-bottom: 28px;
+}
+
+.app-page code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f0f0f2;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+}
+
+.app-section-title {
+  font-family: var(--font-compact);
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Hero -------------------------------------------------------------------- */
+
+.app-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.app-hero__icon {
+  width: 96px;
+  height: 96px;
+  flex: none;
+  border-radius: 21px;
+}
+
+.app-hero__name {
+  font-family: var(--font-compact);
+  font-size: 40px;
+  line-height: 46px;
+  font-weight: 600;
+}
+
+.app-hero__tagline {
+  margin-top: 4px;
+  font-size: 19px;
+  line-height: 26px;
+  color: var(--ink-muted);
+}
+
+.app-summary {
+  margin-top: 28px;
+  font-size: 19px;
+  line-height: 29px;
+}
+
+.app-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+/* Secondary action: same geometry as .btn, quieter treatment. */
+.btn--quiet {
+  border-color: #d6d6da;
+  background: #ffffff;
+  color: var(--ink);
+}
+
+.btn--quiet:hover {
+  background: #f2f2f4;
+  filter: none;
+}
+
+.app-actions__note {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--ink-muted);
+}
+
+.app-req {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 20px;
+  margin: 28px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--footer-rule);
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.app-req dt {
+  color: var(--ink-muted);
+}
+
+.app-req dd {
+  margin: 0;
+}
+
+/* Screenshots ------------------------------------------------------------- */
+
+.app-shots {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.shot {
+  margin: 0;
+}
+
+.shot img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--footer-rule);
+  border-radius: 14px;
+}
+
+.shot__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  border: 1px dashed #cfcfd4;
+  border-radius: 14px;
+  background: repeating-linear-gradient(
+    45deg, #fafafb, #fafafb 10px, #f4f4f6 10px, #f4f4f6 20px);
+  text-align: center;
+}
+
+.shot__label {
+  font-family: var(--font-compact);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-footer);
+}
+
+.shot__hint {
+  max-width: 420px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-muted);
+}
+
+.shot figcaption {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--ink-muted);
+}
+
+/* Features ---------------------------------------------------------------- */
+
+.app-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 40px;
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid var(--footer-rule);
+}
+
+.feature__title {
+  font-family: var(--font-compact);
+  font-size: 19px;
+  line-height: 25px;
+  font-weight: 600;
+}
+
+.feature__text {
+  margin-top: 6px;
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--ink-footer);
+}
+
+/* Pricing ----------------------------------------------------------------- */
+
+.app-pricing {
+  margin-top: 56px;
+  padding: 28px;
+  border: 1px solid var(--footer-rule);
+  border-radius: 16px;
+  background: var(--footer-bg);
+  scroll-margin-top: 24px;
+}
+
+.app-pricing__head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.app-pricing__price {
+  font-family: var(--font-compact);
+  font-size: 36px;
+  line-height: 42px;
+  font-weight: 600;
+}
+
+.app-pricing__unit {
+  font-size: 16px;
+  color: var(--ink-muted);
+}
+
+.app-pricing__list {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.app-pricing__list li {
+  position: relative;
+  padding-left: 24px;
+}
+
+.app-pricing__list li + li {
+  margin-top: 6px;
+}
+
+/* Tick mark, drawn rather than an icon file — it is decoration, not content. */
+.app-pricing__list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  width: 5px;
+  height: 9px;
+  border: solid #2f7d32;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.app-pricing__note {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--ink-muted);
+}
+
+.app-pricing .btn {
+  margin-top: 22px;
+}
+
+/* FAQ --------------------------------------------------------------------- */
+
+.app-faq {
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid var(--footer-rule);
+}
+
+.faq {
+  border-bottom: 1px solid var(--footer-rule);
+}
+
+.faq summary {
+  padding: 14px 28px 14px 0;
+  position: relative;
+  font-family: var(--font-compact);
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 22px;
+  width: 7px;
+  height: 7px;
+  border: solid var(--ink-muted);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+  transition: transform 0.18s ease;
+}
+
+.faq[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+.faq p {
+  padding: 0 0 16px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--ink-footer);
+}
+
+/* Tail -------------------------------------------------------------------- */
+
+.app-tail {
+  margin-top: 48px;
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--ink-footer);
+}
+
+.app-tail p + p {
+  margin-top: 8px;
+}
+
+.app-tail a {
+  text-decoration-line: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.3);
+  text-underline-offset: 2px;
+}
+
+.app-tail a:hover {
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 760px) {
+  .app-page {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+
+  .app-features {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-hero {
+    gap: 16px;
+  }
+
+  .app-hero__icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+  }
+
+  .app-hero__name {
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .app-hero__tagline {
+    font-size: 17px;
+  }
+
+  .app-summary {
+    font-size: 17px;
+    line-height: 27px;
+  }
+
+  .app-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .app-pricing {
+    padding: 22px;
+  }
+}
+
+/* The Orange Timer row on the landing page links through to its own page.
+   Keep the row's Figma geometry; only add the affordance. */
+a.app__main {
+  border-radius: 12px;
+  transition: opacity 0.15s ease;
+}
+
+a.app__main:hover .app__name {
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.25);
+  text-underline-offset: 3px;
+}
+
+/* Compact screenshots — small utility windows shown at natural size on a
+   backdrop, rather than upscaled to the full column and going soft. */
+.shot--compact .shot__stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  border: 1px solid var(--footer-rule);
+  border-radius: 16px;
+  background:
+    radial-gradient(120% 120% at 50% 0%, #ffffff 0%, #f2f2f4 70%, #ececef 100%);
+}
+
+.shot--compact img {
+  width: 100%;
+  height: auto;
+  border: 0;
+  border-radius: 12px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.10),
+    0 12px 32px rgba(0, 0, 0, 0.16);
+}
+
+.shot--compact .shot__placeholder {
+  border-radius: 12px;
+}
+
+@media (max-width: 560px) {
+  .shot--compact .shot__stage {
+    padding: 24px 16px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Blog (blog.html and blog/*.html — generated by tools/build.py)
+   -------------------------------------------------------------------------- */
+
+.blog-index,
+.post {
+  padding-top: 72px;
+  padding-bottom: 96px;
+  font-size: 17px;
+  line-height: 26px;
+}
+
+/* Index ------------------------------------------------------------------- */
+
+.post-list {
+  margin-top: 40px;
+  padding: 0;
+  list-style: none;
+}
+
+.post-card {
+  display: flex;
+  gap: 20px;
+  padding: 28px 0;
+  border-top: 1px solid var(--footer-rule);
+}
+
+.post-card:last-child {
+  border-bottom: 1px solid var(--footer-rule);
+}
+
+.post-card__thumb {
+  flex: none;
+  width: 160px;
+  height: 108px;
+  overflow: hidden;
+  border: 1px solid var(--footer-rule);
+  border-radius: 10px;
+}
+
+.post-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-card__text {
+  min-width: 0;
+}
+
+.post-card__title {
+  font-family: var(--font-compact);
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+.post-card__summary {
+  margin-top: 8px;
+  color: var(--ink-footer);
+}
+
+.post__meta {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink-muted);
+}
+
+/* Post -------------------------------------------------------------------- */
+
+.post__title {
+  font-family: var(--font-compact);
+  font-size: 36px;
+  line-height: 43px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.post__lede {
+  margin-top: 18px;
+  font-size: 19px;
+  line-height: 29px;
+  color: var(--ink-footer);
+}
+
+.post__cover {
+  margin: 32px 0 0;
+}
+
+.post__cover img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--footer-rule);
+  border-radius: 14px;
+}
+
+.post__body {
+  margin-top: 32px;
+}
+
+.post__body > * + * {
+  margin-top: 20px;
+}
+
+.post__body h2 {
+  margin-top: 40px;
+  font-family: var(--font-compact);
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+.post__body h3 {
+  margin-top: 32px;
+  font-family: var(--font-compact);
+  font-size: 19px;
+  line-height: 26px;
+  font-weight: 600;
+}
+
+.post__body h4 {
+  margin-top: 28px;
+  font-family: var(--font-compact);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.post__body ul,
+.post__body ol {
+  padding-left: 24px;
+  list-style: disc;
+}
+
+.post__body ol {
+  list-style: decimal;
+}
+
+.post__body li + li {
+  margin-top: 6px;
+}
+
+.post__body a {
+  text-decoration-line: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.3);
+  text-underline-offset: 2px;
+}
+
+.post__body a:hover {
+  text-decoration-color: currentColor;
+}
+
+.post__body blockquote {
+  margin: 28px 0;
+  padding: 4px 0 4px 20px;
+  border-left: 3px solid #e0e0e3;
+  color: var(--ink-footer);
+  font-size: 19px;
+  line-height: 29px;
+}
+
+.post__body blockquote p {
+  margin: 0;
+}
+
+.post__body code {
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: #f2f2f4;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 14px;
+}
+
+.post__body pre {
+  overflow-x: auto;
+  padding: 18px 20px;
+  border: 1px solid var(--footer-rule);
+  border-radius: 12px;
+  background: #fafafb;
+}
+
+.post__body pre code {
+  padding: 0;
+  background: none;
+  font-size: 13.5px;
+  line-height: 22px;
+}
+
+.post__body hr {
+  height: 0;
+  margin: 36px 0;
+  border: 0;
+  border-top: 1px solid var(--footer-rule);
+}
+
+.post__figure {
+  margin: 32px 0;
+}
+
+.post__figure img,
+.post__body > p > img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--footer-rule);
+  border-radius: 12px;
+}
+
+.post__figure figcaption {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--ink-muted);
+}
+
+.post__back {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--footer-rule);
+  font-size: 15px;
+  color: var(--ink-muted);
+}
+
+@media (max-width: 760px) {
+  .blog-index,
+  .post {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 560px) {
+  .post-card {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .post-card__thumb {
+    width: 100%;
+    height: 160px;
+  }
+
+  .post__title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .post-card__title {
+    font-size: 21px;
+    line-height: 27px;
+  }
+}

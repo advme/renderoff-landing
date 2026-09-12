@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changelog — RENDEROFF</title>
+<meta name="description" content="Release notes for RENDEROFF apps — what changed in each update to Orange Timer, Locky Mocky and everything else we ship.">
+<meta property="og:title" content="Changelog — RENDEROFF">
+<meta property="og:description" content="Release notes for every RENDEROFF app update.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/renderoff-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="shell shell--header">
+    <a class="brand" href="index.html" aria-label="RENDEROFF home">
+      <img src="assets/img/renderoff-logo.png" alt="RENDEROFF" width="46" height="46">
+    </a>
+    <!-- TODO: real destinations. The Figma has no link targets for these. -->
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link" href="mailto:hello@renderoff.com">write me</a>
+      <a class="nav__link" href="index.html#about">about</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="shell changelog">
+
+    <p class="legal__eyebrow"><a href="index.html">&larr; Back to RENDEROFF</a></p>
+
+    <h1 class="legal__title">Changelog</h1>
+    <p class="changelog__lede">
+      Everything that has shipped, newest first.
+    </p>
+
+    <div class="changelog__filters" id="changelog-filters" role="group" aria-label="Filter by app"></div>
+
+    <p class="changelog__status" id="changelog-status" role="status" hidden></p>
+
+    <div id="changelog-list"></div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="shell shell--footer">
+    <div class="site-footer__brand">
+      <img class="site-footer__mark" src="assets/icons/renderoff-mark.svg" alt="" width="29" height="32">
+      <div class="site-footer__meta">
+        <nav class="site-footer__links" aria-label="Footer">
+          <a href="blog.html">blog</a>
+          <a href="changelog.html" aria-current="page">changelog</a>
+          <a href="terms.html">t&amp;c</a>
+        </nav>
+        <p class="site-footer__copy">&copy; 2026 RENDEROFF</p>
+      </div>
+    </div>
+    <p class="site-footer__note">made with a lot of tea in Tallinn</p>
+  </div>
+</footer>
+
+<script src="assets/js/changelog.js"></script>
+</body>
+</html>

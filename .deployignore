@@ -1,0 +1,13 @@
+# NOT read by any tool automatically — this is a checklist.
+#
+# These are local authoring tools. They must not go on the public site:
+# the admin API has no authentication because it is only ever meant to
+# listen on 127.0.0.1.
+
+admin.html
+assets/css/admin.css
+assets/js/admin.js
+tools/
+.changelog-backups/
+.claude/
+assets/img/source/    # full-res originals; the site uses the resized copies
