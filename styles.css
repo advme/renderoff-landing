@@ -209,6 +209,23 @@ main {
   gap: 25px;
 }
 
+/* Platform groups — not in the Figma, which only has the Mac list. Set like the
+   nav links so they sit quietly above each list. */
+.apps__heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  color: var(--ink-muted);
+  font-size: 17px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.apps__list + .apps__heading {
+  margin-top: 56px;
+}
+
 .app {
   display: flex;
   align-items: center;
